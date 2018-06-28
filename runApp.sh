@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-sudo docker build -t hello-world-app .
-sudo docker run -it --rm --name runningWorld hello-world-app
+sudo docker build -t hello-java-app .
+sudo docker run -it -p 80:8080 --rm --name runningJava hello-java-app

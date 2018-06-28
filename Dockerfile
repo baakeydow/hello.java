@@ -1,6 +1,6 @@
-FROM openjdk:7
+FROM maven:alpine
 COPY app /usr/src/app
 WORKDIR /usr/src/app
-EXPOSE 80
-RUN javac Main.java
-CMD ["java", "Main"]
+EXPOSE 8080
+RUN mvn clean package
+CMD ["java", "-jar", "target/app-0.0.1-SNAPSHOT.jar"]
