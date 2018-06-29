@@ -13,55 +13,60 @@ import java.math.BigDecimal;
 @Entity
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Integer id;
 
-    @Version
-    private Integer version;
+  @Version
+  private Integer version;
 
-    private String productId;
-    private String name;
-    private BigDecimal price;
+  private String productId;
+  private String name;
+  private BigDecimal price;
 
-    public String getName() {
-        return name;
-    }
+  @Override
+  public String toString() {
+    return "\n" + getClass().getSimpleName() + "=[name:" + name + " productId:" + productId + " price:" + price + "]\n";
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public Integer getVersion() {
-        return version;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+  public Integer getVersion() {
+    return version;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public String getProductId() {
-        return productId;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
+  public String getProductId() {
+    return productId;
+  }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+  public void setProductId(String productId) {
+    this.productId = productId;
+  }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+  public BigDecimal getPrice() {
+    return price;
+  }
+
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
 
 }
