@@ -1,7 +1,28 @@
 #!/usr/bin/env bash
-sudo docker run \
--p 3306/tcp \
--p 80:8080 \
--v /var/lib/mysql/app:/run/mysqld \
--v $PWD/app:/usr/src/app \
--it hello-java-app /bin/bash
+if [ -d "/var/lib/mysql/app" ];
+then
+  dir="/var/lib/mysql/app"
+elif [ -d "/usr/local/var/mysql" ];
+then
+  dir="/usr/local/var/mysql"
+fi
+if [ ! -z dir ];
+then
+  sudo docker run \
+  -p 3306/tcp \
+  -p 80:8080 \
+  -v $PWD/sock:/run/mysqld \
+  -v dir:/app/mysql/ \
+  -v $PWD/app:/usr/src/app \
+  -it --rm --name runningJava hello-java-app \
+  /bin/bash
+else
+  echo "Mysql data directory not found"
+  sudo docker run \
+  -p 3306/tcp \
+  -p 80:8080 \
+  -v $PWD/sock:/run/mysqld \
+  -v $PWD/app:/usr/src/app \
+  -it --rm --name runningJava hello-java-app \
+  /bin/bash
+fi
